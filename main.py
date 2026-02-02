@@ -1,36 +1,31 @@
 import random
 
-computer = random.choice([-1 , 1 ,0])
+computer = random.choice([-1, 1, 0])
 
+youchoice = input("Enter your choice (SNAKE, WATER or GUN): ").upper()
 
-youchoice = input("Enter your choice( SNAKE , WATER or GUN ): ")
 youDICT = {
-    "SNAKE" : 1 ,
-     "WATER" : -1 , 
-     "GUN" : 0
-     } 
-you = youDICT[youchoice]
-reverseDICT = { 1 : "SNAKE" , -1 : "WATER" , 0 : "GUN"}
+    "SNAKE": 1,
+    "WATER": -1,
+    "GUN": 0
+}
 
-print(f"You chose {reverseDICT[you]} \nComputer chose {reverseDICT[computer]}")
+reverseDICT = {1: "SNAKE", -1: "WATER", 0: "GUN"}
 
-if(computer == you):
-    print ("its a draw")
-
+if youchoice not in youDICT:
+    print("Invalid choice! Please choose SNAKE, WATER, or GUN.")
 else:
-    if (computer == -1 and you == 1):
-        print("You win")
-    elif (computer == -1 and you == 0):
-        print ("You lose ")    
-    elif (computer == 1 and you == -1):
-        print ("You lose ")
-    elif (computer == 1 and you == 0):
-        print ("You win ")   
-    elif (computer == 0 and you == -1):
-        print ("You win ")   
-    elif (computer == 0 and you == 1):
-        print ("You lose ")    
+    you = youDICT[youchoice]
+
+    print(f"You chose {reverseDICT[you]}")
+    print(f"Computer chose {reverseDICT[computer]}")
+
+    if computer == you:
+        print("It's a draw")
     else:
-        print ("Something went wrong")         
-
-
+        if (computer == -1 and you == 1) or \
+           (computer == 1 and you == 0) or \
+           (computer == 0 and you == -1):
+            print("You win")
+        else:
+            print("You lose")
